@@ -33,7 +33,7 @@ cd taskmanager-avlheap
 ### 2. Backend (FastAPI)
 ```bash
 cd backend
-pip install fastapi uvicorn
+pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 ### 3. Frontend (React + Vite)

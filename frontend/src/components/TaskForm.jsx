@@ -1,5 +1,6 @@
 // src/components/TaskForm.jsx
 import { useState } from "react";
+import { createTarea } from "../services/api";
 
 export default function TaskForm({ onAdd }) {
   const [form, setForm] = useState({
@@ -21,43 +22,16 @@ export default function TaskForm({ onAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <input
-          name="id"
-          type="number"
-          placeholder="ID"
-          className="border text-black border-gray-300 p-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-          value={form.id}
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="descripcion"
-          placeholder="Descripción"
-          className="border text-black border-gray-300 p-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-          value={form.descripcion}
-          onChange={handleChange}
-          required
-        />
-        <select
-          name="prioridad"
-          className="border text-black border-gray-300 p-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-          value={form.prioridad}
-          onChange={handleChange}
-        >
+    <form onSubmit={handleSubmit} className="mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <input name="id" type="number" placeholder="ID" className="border p-2 rounded" value={form.id} onChange={handleChange} required />
+        <input name="descripcion" placeholder="Descripción" className="border p-2 rounded" value={form.descripcion} onChange={handleChange} required />
+        <select name="prioridad" className="border p-2 rounded" value={form.prioridad} onChange={handleChange}>
           <option value="alta">Alta</option>
           <option value="media">Media</option>
           <option value="baja">Baja</option>
         </select>
-        <input
-          name="vencimiento"
-          type="date"
-          className="border text-black border-gray-300 p-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-          value={form.vencimiento}
-          onChange={handleChange}
-          required
-        />
+        <input name="vencimiento" type="date" className="border p-2 rounded" value={form.vencimiento} onChange={handleChange} required />
       </div>
       <button
         type="submit"

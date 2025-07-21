@@ -1,0 +1,25 @@
+import { deleteTarea } from "../services/api";
+import { FaTrash } from "react-icons/fa";
+
+export default function TaskList({ tareas, onUpdate }) {
+  const handleDelete = async (id) => {
+    await deleteTarea(id);
+    onUpdate();
+  };
+
+  return (
+    <div>
+      <h2 className="text-lg font-semibold mb-2">Lista de Tareas</h2>
+      <ul>
+        {tareas.map((t) => (
+          <li key={t.id} className="flex justify-between border-b py-2">
+            <span>{t.descripcion} (ID: {t.id}, Prioridad: {t.prioridad}, Vence: {t.vencimiento})</span>
+            <button onClick={() => handleDelete(t.id)} className="text-red-600 hover:underline">
+              <FaTrash />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

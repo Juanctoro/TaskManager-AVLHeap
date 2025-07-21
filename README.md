@@ -45,7 +45,7 @@ npm run dev
 
 ### 🐳 Docker (opcional)
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 API: http://127.0.0.1:8000/

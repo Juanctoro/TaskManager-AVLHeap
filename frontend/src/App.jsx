@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import { useEffect, useState } from "react";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import TopPriority from "./components/TopPriority";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tareas, setTareas] = useState([]);
+
+  const fetchTareas = async () => {
+    const data = await getTareas();
+    setTareas(data);
+  };
+
+  useEffect(() => {
+    fetchTareas();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen min-w-screen bg-gradient-to-br from-gray-100 to-gray-300 p-6">
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">🗂️ Gestor de Tareas</h1>
+        <TaskForm onAdd={fetchTareas} />
+        <TopPriority />
+        <TaskList tareas={tareas} onUpdate={fetchTareas} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

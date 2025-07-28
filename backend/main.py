@@ -37,6 +37,9 @@ def read_root():
 def agregar_tarea(t: TareaRequest):
     if prioridad_map.get(t.prioridad) is None:
         raise HTTPException(status_code=400, detail="Prioridad inválida")
+    existente = avl.buscar(t.id)
+    if existente:
+        raise HTTPException(status_code=400, detail="Ya existe una tarea con ese ID")
     tarea = Tarea(t.id, t.descripcion, prioridad_map[t.prioridad], t.vencimiento)
     heap.insert(tarea)
     avl.insert(tarea)

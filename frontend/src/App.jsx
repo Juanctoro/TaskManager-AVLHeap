@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import TopPriority from "./components/TopPriority";
+import TaskSearch from "./components/TaskSearch";
 import { getTareas } from "./services/api";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <h1 className="text-2xl font-bold mb-4 text-center">Gestor de Tareas</h1>
         <TaskForm onAdd={fetchTareas} />
         <TopPriority refresh={refreshTop} />
+        <TaskSearch />
         <TaskList tareas={tareas} onUpdate={fetchTareas} />
       </div>
     </div>

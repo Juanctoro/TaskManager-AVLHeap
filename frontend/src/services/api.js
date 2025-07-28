@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "http://localhost:8000";
 
 export const getTareas = async () => {
   const res = await fetch(`${BASE_URL}/tareas`);
@@ -24,3 +24,11 @@ export const getTopTarea = async () => {
   if (!res.ok) throw new Error("No top task");
   return res.json();
 };
+
+export async function getTareaById(id) {
+  console.log(`Fetching task with ID: ${id}`);
+  console.log('tipo de dato:', typeof id);
+  const res = await fetch(`${BASE_URL}/tareas/${id}`);
+  if (!res.ok) throw new Error("Tarea no encontrada");
+  return await res.json();
+}

@@ -1,5 +1,5 @@
 import { deleteTarea } from "../services/api";
-import { FaTrash } from "react-icons/fa";
+import { FaCheckCircle  } from "react-icons/fa";
 
 export default function TaskList({ tareas, onUpdate }) {
   const handleDelete = async (id) => {
@@ -14,8 +14,8 @@ export default function TaskList({ tareas, onUpdate }) {
         {tareas.map((t) => (
           <li key={t.id} className="flex justify-between border-b py-2">
             <span>{t.descripcion} (ID: {t.id}, Prioridad: {t.prioridad}, Vence: {t.vencimiento})</span>
-            <button onClick={() => handleDelete(t.id)} className="text-red-600 hover:underline">
-              <FaTrash />
+            <button onClick={() => handleDelete(t.id)} className="text-green-600 hover:text-green-800 text-lg" title="Marcar como completada">
+              <FaCheckCircle  />
             </button>
           </li>
         ))}

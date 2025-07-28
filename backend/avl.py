@@ -16,9 +16,12 @@ class AVLTree:
     def _insert(self, node, tarea):
         if not node:
             return AVLNode(tarea)
+        if tarea.id == node.tarea.id:
+            node.tarea = tarea
+            return node
         if tarea.id < node.tarea.id:
             node.left = self._insert(node.left, tarea)
-        else:
+        elif tarea.id > node.tarea.id:
             node.right = self._insert(node.right, tarea)
         node.height = 1 + max(self.get_height(node.left), self.get_height(node.right))
         return self._balance(node)
@@ -54,7 +57,8 @@ class AVLTree:
             return node.tarea
         if id < node.tarea.id:
             return self._buscar(node.left, id)
-        return self._buscar(node.right, id)
+        else:
+            return self._buscar(node.right, id)
 
     def inorder(self):
         res = []
